@@ -22,4 +22,5 @@ urlpatterns = [
     path('',views.index,name='index'),
     path('topics/', views.topics, name='topics'),
     path('topics/(?P<topic_id>\d+)/', views.topic, name='topic'),
+    path('new_topic/',views.new_topic,name='new_topic'),
 ]
