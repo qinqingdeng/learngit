@@ -13,12 +13,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-
-from django.contrib import admin
+'''定义users的URL模式'''
 from django.urls import path,include
-
+from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LogoutView
+from . import views
+LoginView.template_name = 'users/login.html'
 urlpatterns = [
-        path('admin/',admin.site.urls),
-        path('users/',include('users.urls',namespace='users')),
-        path('',include('learning_logs.urls',namespace='learning_logs') ) , 
+    # 登陆界面
+    path('login/', LoginView.as_view(),
+        name='login'),
+    #zhuxiao
+    path('logout/',LogoutView.as_view(),name='logout'),
+    # 注册页面
+    path('register/',views.register,name='register'),
 ]
+app_name='users'
